@@ -1,0 +1,23 @@
+# docker compose file for mongodb and mongo-express
+
+version: '3' # version of docker-compose
+services:
+  mongodb:
+    # name of the container 
+    image: mongo # image name, we can also add version
+    ports:
+      - 27017:27017 # ports (host:container )
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin # environment variable
+      - MONGO_INITDB_ROOT_PASSWORD=password # environment variable
+
+  mongo-express:
+    # name of the container 
+    image: mongo-express:latest # image name, we can also add version
+    restart: always # fixes MongoNetworkError when mongodb is not ready when mongo-express starts
+    ports:
+      - 8081:8081 # ports (host:container )
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin # environment variable
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password # environment variable
+      - ME_CONFIG_MONGODB_SERVER=mongodb # environment variable
