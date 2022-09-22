@@ -1,3 +1,6 @@
+
+# docker compose file for mongodb and mongo-express
+
 version: "3"
 services:
   mongodb:
